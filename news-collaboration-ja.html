@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>京都大学研究機関との共同研究協定を締結 — ニュース</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0f2236; --navy-mid: #1a3a52;
+      --teal: #2a7f74; --teal-light: #3a9d91; --teal-pale: #e8f5f3;
+      --cream: #f8f7f4; --white: #ffffff;
+      --ink: #1a1a1a; --charcoal: #37352f; --slate: #5d5b54; --steel: #888680; --hairline: #e5e2dd;
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--hairline); height: 64px; display: flex; align-items: center; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 36px; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--charcoal); font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: var(--radius-sm); transition: background 0.15s, color 0.15s; }
+    .nav-links a:hover { background: var(--cream); color: var(--teal); }
+    .nav-lang { display: flex; gap: 4px; }
+    .lang-btn { font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--hairline); background: transparent; color: var(--slate); text-decoration: none; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+    .lang-btn.active, .lang-btn:hover { background: var(--teal); color: var(--white); border-color: var(--teal); }
+
+    .article-hero { background: var(--navy); color: var(--white); padding: 72px 32px 64px; position: relative; overflow: hidden; }
+    .article-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 80% 50%, rgba(42,127,116,0.20) 0%, transparent 65%); }
+    .article-hero-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 2; }
+    .breadcrumb { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+    .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--teal-light); }
+    .article-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--teal-light); background: rgba(58,157,145,0.15); border: 1px solid rgba(58,157,145,0.35); border-radius: 999px; padding: 4px 14px; margin-bottom: 20px; }
+    .article-hero h1 { font-size: clamp(22px, 3vw, 36px); font-weight: 700; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 20px; }
+    .article-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 13px; color: rgba(255,255,255,0.55); }
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+
+    .article-body { max-width: 820px; margin: 0 auto; padding: 64px 32px 80px; }
+    .lead { font-size: 17px; color: var(--charcoal); line-height: 1.95; margin-bottom: 40px; font-weight: 400; }
+    .article-body h2 { font-size: 21px; font-weight: 700; color: var(--navy); margin: 44px 0 16px; }
+    .article-body h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin: 32px 0 12px; }
+    .article-body p { font-size: 15px; color: var(--charcoal); line-height: 1.95; margin-bottom: 20px; }
+    .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 20px; }
+    .article-body li { font-size: 15px; color: var(--charcoal); line-height: 1.9; margin-bottom: 8px; }
+    .article-divider { border: none; border-top: 1px solid var(--hairline); margin: 48px 0; }
+
+    .highlight-box { background: var(--teal-pale); border-left: 3px solid var(--teal); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 20px 24px; margin: 32px 0; }
+    .highlight-box p { margin-bottom: 0; color: var(--charcoal); font-size: 14px; line-height: 1.9; }
+
+    .quote-block { background: var(--cream); border-radius: var(--radius-lg); padding: 32px 36px; margin: 36px 0; position: relative; }
+    .quote-block::before { content: '\201C'; font-size: 64px; color: var(--teal); line-height: 1; position: absolute; top: 12px; left: 24px; font-family: Georgia, serif; }
+    .quote-block p { font-size: 16px; color: var(--charcoal); line-height: 1.85; font-style: italic; padding-left: 32px; margin-bottom: 12px; }
+    .quote-block .quote-attr { font-size: 13px; color: var(--slate); font-style: normal; font-weight: 600; padding-left: 32px; }
+
+    .collab-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+    .pillar-card { background: var(--cream); border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--hairline); }
+    .pillar-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .pillar-card p { font-size: 14px; color: var(--slate); line-height: 1.8; margin-bottom: 0; }
+
+    .article-footer { background: var(--cream); padding: 48px 32px; }
+    .article-footer-inner { max-width: 820px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--teal); text-decoration: none; border: 1px solid var(--teal); border-radius: var(--radius-md); padding: 10px 20px; margin-bottom: 40px; transition: background 0.15s, color 0.15s; }
+    .back-link:hover { background: var(--teal); color: var(--white); }
+    .related-title { font-size: 13px; font-weight: 600; color: var(--steel); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .related-card { background: var(--white); border: 1px solid var(--hairline); border-radius: var(--radius-lg); padding: 20px; text-decoration: none; display: block; transition: box-shadow 0.15s; }
+    .related-card:hover { box-shadow: 0 4px 16px rgba(15,34,54,0.08); }
+    .related-card .r-tag { font-size: 11px; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+    .related-card h4 { font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.5; }
+
+    footer { background: var(--white); border-top: 1px solid var(--hairline); padding: 40px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo img { height: 28px; opacity: 0.75; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 13px; color: var(--steel); text-decoration: none; }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-copy { font-size: 12px; color: var(--steel); }
+
+    @media (max-width: 640px) {
+      .article-body { padding: 40px 20px 60px; }
+      .article-hero { padding: 48px 20px 40px; }
+      .collab-pillars { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index-ja.html"><img src="Brand_assets/FolliceaTech_透明ロゴ.png" alt="Follicea Technologies" /></a>
+    <ul class="nav-links">
+      <li><a href="index-ja.html">ホーム</a></li>
+      <li><a href="index-ja.html#about">会社概要</a></li>
+      <li><a href="technology-ja.html">テクノロジー</a></li>
+      <li><a href="index-ja.html#team">チーム</a></li>
+      <li><a href="index-ja.html#news">ニュース</a></li>
+    </ul>
+    <div class="nav-lang">
+      <a class="lang-btn" href="news-collaboration.html">EN</a>
+      <a class="lang-btn active" href="news-collaboration-ja.html">JP</a>
+    </div>
+  </div>
+</nav>
+
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <p class="breadcrumb"><a href="index-ja.html">ホーム</a> / <a href="index-ja.html#news">ニュース</a> / 京都大学との連携</p>
+    <span class="article-tag">Partnership</span>
+    <h1>京都大学研究機関との共同研究協定を締結</h1>
+    <div class="article-meta">
+      <span>📅 2025年2月</span>
+      <span>🤝 産学連携</span>
+      <span>📍 京都、日本</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-body">
+  <p class="lead">
+    Follicea Technologiesは、京都大学の研究機関との正式な共同研究協定の締結を発表いたします。
+    このパートナーシップにより、世界トップクラスの生殖生物学の専門知識と最先端の実験インフラへのアクセスが可能となり、
+    当社の初期創薬プログラムを加速する基盤となる科学的連携関係が確立されます。
+  </p>
+
+  <h2>このパートナーシップの意義</h2>
+  <p>
+    創薬ステージにあるバイオテクノロジースタートアップにとって、学術機関との連携は単なる補完的なものではなく、
+    科学的に堅牢なプログラムと回避可能な理由で失敗するプログラムとを分ける、決定的な要因となり得ます。
+    京都大学の生殖生物学・分子内分泌学・生体モデル系における研究力は、
+    当社リードプログラムの核心にある科学的課題と直接的に合致しています。
+  </p>
+  <p>
+    本協定により、当社の内部創薬チームは、まさに私たちが必要とする領域で長年にわたって専門知識とインフラを構築してきた研究者と
+    共同で研究を行うことができます。この連携は、科学的な相補性・相互尊重、そして不妊治療へのメカニズム的アプローチこそが
+    正しい道であるという共通の確信に基づいて構築されたものです。
+  </p>
+
+  <div class="highlight-box">
+    <p><strong>連携の範囲：</strong>本協定は、卵胞生物学における共同研究活動、検証済みの生体内生殖モデルへのアクセス、
+    Folliceaのリード標的ポートフォリオに関する共同科学レビューを対象としています。
+    初期契約期間は2025年第4四半期まで延長オプション付きで設定されています。</p>
+  </div>
+
+  <h2>連携の内容</h2>
+  <p>
+    本連携は、Folliceaの現在の創薬プログラムにおける具体的な科学的ニーズに対応する
+    4つの中核的な共同活動分野を軸に構成されています。
+  </p>
+
+  <div class="collab-pillars">
+    <div class="pillar-card">
+      <h3>標的生物学の検証</h3>
+      <p>卵胞発育のための確立された細胞・組織モデルシステムを用いた、Folliceaのリード標的の独立した生物学的検証。</p>
+    </div>
+    <div class="pillar-card">
+      <h3>生体内モデルへのアクセス</h3>
+      <p>標的摂動の表現型解析のための生殖生物学生体内モデルへのアクセス。初期有効性・安全性評価を支援。</p>
+    </div>
+    <div class="pillar-card">
+      <h3>ゲノム・プロテオームデータ</h3>
+      <p>ヒトおよびモデル生物の卵胞組織由来のキュレーション済みトランスクリプトーム・プロテオームデータの共有利用。</p>
+    </div>
+    <div class="pillar-card">
+      <h3>科学的アドバイザリー</h3>
+      <p>シニア生殖生物学研究者による、Folliceaの標的根拠と創薬戦略のレビューおよびフィードバックのための定期協議。</p>
+    </div>
+  </div>
+
+  <h2>京都大学とライフサイエンスエコシステム</h2>
+  <p>
+    京都大学は日本のトップ研究機関として常に高く評価されており、基礎生命科学における優秀性において国際的な評価を確立しています。
+    その医学・生命科学系学部には、生殖医学・発生生物学・分子内分泌学において国際的に認められた研究者が名を連ねています。
+  </p>
+  <p>
+    Folliceaが京都を本拠地に選んだ理由の一つは、まさにこの機関的近接性がもたらす機会にあります。
+    大学研究者との密接で継続的な関係を構築すること——契約上の関係にとどまらず——は、
+    私たちが科学を違う形で実践しようとするアプローチの一部です。
+    深み・知的誠実さ、そして自分たちの考えに欠陥を見つけたときに指摘してくれる専門的な協力者と共に働くことで生まれる厳密さを持って。
+  </p>
+
+  <div class="quote-block">
+    <p>京都の学術環境に組み込まれていることは、地理的な利便性にとどまりません——それは科学的に不可欠なことです。私たちは、この生物学を誰よりも深く知る人たちに、自分たちの研究を試され、問われることを望んでいます。</p>
+    <span class="quote-attr">— 創業チーム、Follicea Technologies</span>
+  </div>
+
+  <h2>知的財産とガバナンス</h2>
+  <p>
+    本連携協定には、連携内での自由かつ開かれた科学的交流を可能にしながら、
+    双方の利益を保護する明確に定義された知的財産ガバナンス条項が含まれています。
+    各当事者が提供するバックグラウンドIPはその当事者が保持します。
+    連携活動から生じる共同開発フォアグラウンドIPは共同所有とし、
+    Folliceaの開発・ライセンス活動を促進する形で商業化権が構成されます。
+  </p>
+  <p>
+    両機関は、標準的なIP保護審査期間を経た上での科学的知見の迅速な公開にコミットしています。
+    透明性と厳密な査読が分野の発展に不可欠であると考えており、
+    このコミットメントは協定の出版規定に反映されています。
+  </p>
+
+  <h2>今後の展開</h2>
+  <p>
+    本連携は2025年2月に正式に開始され、最初の共同活動として標的検証実験に焦点を当てています。
+    本協定のもとで見込まれる主要マイルストーンは以下の通りです。
+  </p>
+  <ul>
+    <li>最初の共同標的検証実験（2025年第1四半期）</li>
+    <li>リード標的シリーズの生体内モデル確立（2025年第2四半期）</li>
+    <li>リード指名前の標的ポートフォリオに関する共同科学レビュー（2025年第2四半期）</li>
+    <li>第2四半期進捗レビューに基づく連携延長協議（2025年第3四半期）</li>
+  </ul>
+  <p>
+    プログラムの最も初期の段階からこの研究に熱意を持って深く関与してくださっている
+    京都大学の共同研究者の皆様に、心より感謝申し上げます。
+    このパートナーシップは、開発のすべての段階において実践し続けていく、
+    厳密で協調的なアプローチの体現です。
+  </p>
+
+  <hr class="article-divider" />
+
+  <h2>Follicea Technologiesについて</h2>
+  <p>
+    Follicea Technologies株式会社は、京都を拠点とするバイオテクノロジースタートアップ企業であり、
+    不妊治療を目的とした低分子治療薬の研究・開発に取り組んでいます。
+    現在は創薬ステージにあり、卵胞発育における新規経路を標的とするリードプログラムを推進しています。
+    詳細については、<a href="index-ja.html" style="color:var(--teal);font-weight:500;">当社ウェブサイト</a>をご覧いただくか、
+    <a href="mailto:info@folliceatech.com" style="color:var(--teal);font-weight:500;">info@folliceatech.com</a>までお問い合わせください。
+  </p>
+</div>
+
+<div class="article-footer">
+  <div class="article-footer-inner">
+    <a class="back-link" href="index-ja.html#news">← ニュース一覧へ戻る</a>
+    <p class="related-title">関連記事</p>
+    <div class="related-grid">
+      <a class="related-card" href="news-founding-ja.html">
+        <p class="r-tag">Announcement</p>
+        <h4>Follicea Technologies、京都にて設立</h4>
+      </a>
+      <a class="related-card" href="news-research-ja.html">
+        <p class="r-tag">Research</p>
+        <h4>リード標的同定プログラムを正式に開始</h4>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="Brand_assets/FolliceaTech_透明ロゴ.png" alt="Follicea Technologies" /></div>
+    <ul class="footer-links">
+      <li><a href="index-ja.html">ホーム</a></li>
+      <li><a href="technology-ja.html">テクノロジー</a></li>
+      <li><a href="index-ja.html#team">チーム</a></li>
+      <li><a href="index-ja.html#news">ニュース</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Follicea Technologies, Inc. 京都、日本</p>
+  </div>
+</footer>
+</body>
+</html>

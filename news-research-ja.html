@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>リード標的同定プログラム開始 — ニュース</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0f2236; --navy-mid: #1a3a52;
+      --teal: #2a7f74; --teal-light: #3a9d91; --teal-pale: #e8f5f3;
+      --cream: #f8f7f4; --white: #ffffff;
+      --ink: #1a1a1a; --charcoal: #37352f; --slate: #5d5b54; --steel: #888680; --hairline: #e5e2dd;
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--hairline); height: 64px; display: flex; align-items: center; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 36px; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--charcoal); font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: var(--radius-sm); transition: background 0.15s, color 0.15s; }
+    .nav-links a:hover { background: var(--cream); color: var(--teal); }
+    .nav-lang { display: flex; gap: 4px; }
+    .lang-btn { font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--hairline); background: transparent; color: var(--slate); text-decoration: none; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+    .lang-btn.active, .lang-btn:hover { background: var(--teal); color: var(--white); border-color: var(--teal); }
+
+    .article-hero { background: var(--navy); color: var(--white); padding: 72px 32px 64px; position: relative; overflow: hidden; }
+    .article-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 80% 50%, rgba(42,127,116,0.20) 0%, transparent 65%); }
+    .article-hero-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 2; }
+    .breadcrumb { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+    .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--teal-light); }
+    .article-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--teal-light); background: rgba(58,157,145,0.15); border: 1px solid rgba(58,157,145,0.35); border-radius: 999px; padding: 4px 14px; margin-bottom: 20px; }
+    .article-hero h1 { font-size: clamp(24px, 3.2vw, 38px); font-weight: 700; line-height: 1.25; letter-spacing: -0.3px; margin-bottom: 20px; }
+    .article-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 13px; color: rgba(255,255,255,0.55); }
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+
+    .article-body { max-width: 820px; margin: 0 auto; padding: 64px 32px 80px; }
+    .lead { font-size: 17px; color: var(--charcoal); line-height: 1.95; margin-bottom: 40px; font-weight: 400; }
+    .article-body h2 { font-size: 21px; font-weight: 700; color: var(--navy); margin: 44px 0 16px; }
+    .article-body h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin: 32px 0 12px; }
+    .article-body p { font-size: 15px; color: var(--charcoal); line-height: 1.95; margin-bottom: 20px; }
+    .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 20px; }
+    .article-body li { font-size: 15px; color: var(--charcoal); line-height: 1.9; margin-bottom: 8px; }
+    .article-divider { border: none; border-top: 1px solid var(--hairline); margin: 48px 0; }
+
+    .highlight-box { background: var(--teal-pale); border-left: 3px solid var(--teal); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 20px 24px; margin: 32px 0; }
+    .highlight-box p { margin-bottom: 0; color: var(--charcoal); font-size: 14px; line-height: 1.9; }
+
+    .quote-block { background: var(--cream); border-radius: var(--radius-lg); padding: 32px 36px; margin: 36px 0; position: relative; }
+    .quote-block::before { content: '\201C'; font-size: 64px; color: var(--teal); line-height: 1; position: absolute; top: 12px; left: 24px; font-family: Georgia, serif; }
+    .quote-block p { font-size: 16px; color: var(--charcoal); line-height: 1.85; font-style: italic; padding-left: 32px; margin-bottom: 12px; }
+    .quote-block .quote-attr { font-size: 13px; color: var(--slate); font-style: normal; font-weight: 600; padding-left: 32px; }
+
+    .step-list { list-style: none; padding-left: 0; margin-bottom: 20px; counter-reset: step-counter; }
+    .step-list li { counter-increment: step-counter; display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+    .step-list li::before { content: counter(step-counter); min-width: 32px; height: 32px; background: var(--teal); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-list li span { font-size: 15px; color: var(--charcoal); line-height: 1.85; }
+
+    .article-footer { background: var(--cream); padding: 48px 32px; }
+    .article-footer-inner { max-width: 820px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--teal); text-decoration: none; border: 1px solid var(--teal); border-radius: var(--radius-md); padding: 10px 20px; margin-bottom: 40px; transition: background 0.15s, color 0.15s; }
+    .back-link:hover { background: var(--teal); color: var(--white); }
+    .related-title { font-size: 13px; font-weight: 600; color: var(--steel); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .related-card { background: var(--white); border: 1px solid var(--hairline); border-radius: var(--radius-lg); padding: 20px; text-decoration: none; display: block; transition: box-shadow 0.15s; }
+    .related-card:hover { box-shadow: 0 4px 16px rgba(15,34,54,0.08); }
+    .related-card .r-tag { font-size: 11px; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+    .related-card h4 { font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.5; }
+
+    footer { background: var(--white); border-top: 1px solid var(--hairline); padding: 40px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo img { height: 28px; opacity: 0.75; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 13px; color: var(--steel); text-decoration: none; }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-copy { font-size: 12px; color: var(--steel); }
+
+    @media (max-width: 640px) {
+      .article-body { padding: 40px 20px 60px; }
+      .article-hero { padding: 48px 20px 40px; }
+      .related-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index-ja.html"><img src="Brand_assets/FolliceaTech_透明ロゴ.png" alt="Follicea Technologies" /></a>
+    <ul class="nav-links">
+      <li><a href="index-ja.html">ホーム</a></li>
+      <li><a href="index-ja.html#about">会社概要</a></li>
+      <li><a href="technology-ja.html">テクノロジー</a></li>
+      <li><a href="index-ja.html#team">チーム</a></li>
+      <li><a href="index-ja.html#news">ニュース</a></li>
+    </ul>
+    <div class="nav-lang">
+      <a class="lang-btn" href="news-research.html">EN</a>
+      <a class="lang-btn active" href="news-research-ja.html">JP</a>
+    </div>
+  </div>
+</nav>
+
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <p class="breadcrumb"><a href="index-ja.html">ホーム</a> / <a href="index-ja.html#news">ニュース</a> / リード標的同定</p>
+    <span class="article-tag">Research</span>
+    <h1>リード標的同定プログラムを正式に開始</h1>
+    <div class="article-meta">
+      <span>📅 2025年3月</span>
+      <span>🔬 研究アップデート</span>
+      <span>📍 京都、日本</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-body">
+  <p class="lead">
+    Follicea Technologiesは、創薬ロードマップの最初のマイルストーンとなる、リード標的同定プログラムを正式に開始しました。
+    この取り組みは、会社設立から能動的な研究活動へと移行する重要な一歩であり、
+    不妊治療のための次世代治療薬の開発という目標に向けた核心的なプロセスです。
+  </p>
+
+  <h2>標的同定とは何か</h2>
+  <p>
+    創薬において、適切な分子標的を特定することは、研究チームが下す最も重要な意思決定の一つです。
+    標的とは、一般的にタンパク質・酵素・受容体などの生体分子であり、薬物がこれと相互作用することで治療効果が生まれます。
+    誤った標的を選択した場合、その後の化学合成がどれほど優れていても、プログラムを救うことはできません。
+  </p>
+  <p>
+    当社の標的同定研究は、卵胞発育——卵子を内包する卵胞が成長・成熟・排卵するプロセス——を制御する分子経路に焦点を当てています。
+    このプロセスの障害は、女性不妊の最も一般的な原因の一つである排卵機能障害の大部分を占めています。
+  </p>
+
+  <div class="highlight-box">
+    <p><strong>注力領域：</strong>私たちは、卵胞発育の新規制御因子——卵巣生物学への関与が示唆されながらも、
+    これまで薬理学的標的として探索されていないタンパク質・シグナル伝達ノード——を調査しています。
+    2025年第2四半期末までに、高信頼性のリード標的を少なくとも2つ特定することを目標としています。</p>
+  </div>
+
+  <h2>科学的アプローチ</h2>
+  <p>
+    本プログラムは、計算生物学、公開ゲノムデータセット、そして生殖医学分野の学術研究者との緊密な連携を組み合わせたアプローチを採用しています。
+    生物学的に説得力があり、かつ薬理学的に取り組み可能な候補を選定するために、多層的な標的評価フレームワークを適用しています。
+  </p>
+
+  <ol class="step-list">
+    <li><span><strong>ゲノム・トランスクリプトーム解析：</strong>生殖ライフステージにわたる卵胞細胞の公開データセットを解析し、卵胞形成における制御的役割と一致した発現パターンを持つ遺伝子を特定する。</span></li>
+    <li><span><strong>機能的検証レビュー：</strong>モデル生物におけるノックアウト・ノックダウン・機能獲得研究を体系的に精査し、その摂動が不妊表現型を再現する標的を同定する。</span></li>
+    <li><span><strong>構造解析と薬物可能性評価：</strong>候補タンパク質の構造を計算的に解析し、小分子が十分な親和性と選択性で標的に結合できるかを評価する。</span></li>
+    <li><span><strong>臨床的関連性スコアリング：</strong>早発卵巣不全・多嚢胞性卵巣症候群・卵巣低反応に関連する変異を含むヒト遺伝データとの照合を行う。</span></li>
+  </ol>
+
+  <h2>このアプローチが異なる理由</h2>
+  <p>
+    現在市販されている不妊治療薬の多くは、厳密な分子仮説に基づいて設計されたものではありません。
+    1960年代に登場したクロミフェンクエン酸塩は、選択的エストロゲン受容体モジュレーターとして広範に作用します。
+    ゴナドトロピン注射は、視床下部-下垂体-卵巣軸を完全にバイパスし、粗い形でのホルモン刺激を提供します。
+    これらのアプローチは一部の患者に有効ですが、卵巣過剰刺激症候群や多胎妊娠などのリスクを伴い、他の患者には全く効果がありません。
+  </p>
+  <p>
+    私たちの仮説は、メカニズム的精度が優れた臨床成績に直結するというものです。
+    卵胞発育経路の特定のノードを標的とすることで、明確な患者サブグループにおいてより有効で耐用性が高く、
+    最終的には注射剤ではなく経口剤として提供できる薬物を設計できると確信しています。
+  </p>
+
+  <div class="quote-block">
+    <p>私たちが問いかけているのは、「何が、どの患者において、具体的に機能不全を起こしているのか——そして、まさにその問題を修正する分子を設計できるか」ということです。そのためには、まず厳密な標的同定が不可欠です。</p>
+    <span class="quote-attr">— 研究チーム、Follicea Technologies</span>
+  </div>
+
+  <h2>初期知見と候補パイプライン</h2>
+  <p>
+    具体的な標的については現時点では開示できませんが、初期の計算スクリーニングにより、
+    顆粒膜細胞機能および卵母細胞成熟において中心的な役割を果たすことが知られているTGF-βスーパーファミリーシグナル伝達軸のタンパク質群が、
+    優先度の高い候補として特定されています。
+  </p>
+  <p>
+    並行して、キスペプチン-GnRHシグナル伝達軸の標的も検討しています。
+    最近の遺伝学的研究から、新たな薬理学的介入点を提供し得る、これまで特性解析されていない制御因子が明らかになっています。
+    どちらの候補群も、合成研究を開始する前に、上記で説明した完全な検証フレームワークを適用します。
+  </p>
+
+  <h2>タイムラインと今後の展開</h2>
+  <p>
+    標的同定プログラムは2025年第2四半期末まで実施される予定であり、その時点で1〜2個の主要リード標的を指名し、
+    ヒット創出フェーズ——各標的に結合・調節する小分子化合物を同定するプロセス——を開始することを見込んでいます。
+  </p>
+  <ul>
+    <li>一次標的評価パネルの完了（2025年4月）</li>
+    <li>学術協力機関によるレビューと検証（2025年5月）</li>
+    <li>リード標的の指名（2025年第2四半期）</li>
+    <li>ヒット創出キャンペーンの開始（2025年下半期）</li>
+    <li>初期構造活性相関（SAR）研究（2025年下半期〜2026年）</li>
+  </ul>
+  <p>
+    重要なマイルストーンに達し次第、引き続き情報を公開してまいります。
+    研究プログラムや共同研究の機会についてのお問い合わせは、
+    <a href="mailto:info@folliceatech.com" style="color:var(--teal);font-weight:500;">info@folliceatech.com</a>までご連絡ください。
+  </p>
+
+  <hr class="article-divider" />
+
+  <h2>Follicea Technologiesについて</h2>
+  <p>
+    Follicea Technologies株式会社は、京都を拠点とするバイオテクノロジースタートアップ企業であり、
+    不妊治療を目的とした低分子治療薬の研究・開発に取り組んでいます。
+    現在は創薬ステージにあり、卵胞発育における新規経路を標的とするリードプログラムを推進しています。
+    詳細については、<a href="index-ja.html" style="color:var(--teal);font-weight:500;">当社ウェブサイト</a>をご覧ください。
+  </p>
+</div>
+
+<div class="article-footer">
+  <div class="article-footer-inner">
+    <a class="back-link" href="index-ja.html#news">← ニュース一覧へ戻る</a>
+    <p class="related-title">関連記事</p>
+    <div class="related-grid">
+      <a class="related-card" href="news-founding-ja.html">
+        <p class="r-tag">Announcement</p>
+        <h4>Follicea Technologies、京都にて設立</h4>
+      </a>
+      <a class="related-card" href="news-collaboration-ja.html">
+        <p class="r-tag">Partnership</p>
+        <h4>京都大学研究機関との共同研究協定を締結</h4>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="Brand_assets/FolliceaTech_透明ロゴ.png" alt="Follicea Technologies" /></div>
+    <ul class="footer-links">
+      <li><a href="index-ja.html">ホーム</a></li>
+      <li><a href="technology-ja.html">テクノロジー</a></li>
+      <li><a href="index-ja.html#team">チーム</a></li>
+      <li><a href="index-ja.html#news">ニュース</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Follicea Technologies, Inc. 京都、日本</p>
+  </div>
+</footer>
+</body>
+</html>
