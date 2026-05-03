@@ -172,7 +172,7 @@
   }
 
   /* --- 記事ページ: 関連記事 --- */
-  const relatedGrid = document.querySelector('.article-footer .related-grid');
+  const relatedGrid = document.querySelector('.related-grid');
   if (relatedGrid) {
     const parts       = location.pathname.replace(/\/+$/, '').split('/');
     const currentFile = parts[parts.length - 1];
