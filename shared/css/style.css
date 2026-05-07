@@ -37,6 +37,19 @@ body:lang(ja) {
 }
 
 /* ===========================
+   UTILITIES
+   =========================== */
+
+/* テキストを1行で収め、はみ出た部分を省略記号で表示
+   使い方: class="nowrap" を要素に追加するだけ
+   例: <p class="section-body nowrap">...</p>
+   ※ ブロック要素 (p, h2, div など) に有効。width の制約がある要素で機能します。 */
+.nowrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ===========================
    NAVIGATION
    =========================== */
 nav {
