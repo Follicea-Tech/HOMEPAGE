@@ -27,6 +27,7 @@ body {
   color: var(--ink);
   background: var(--white);
   line-height: 1.6;
+  overflow-wrap: break-word; /* 長い単語・URLが画面外にはみ出るのを防ぐ */
 }
 
 /* Japanese font override — triggered by <html lang="ja"> */
@@ -40,13 +41,43 @@ body:lang(ja) {
    UTILITIES
    =========================== */
 
-/* テキストを1行で収め、はみ出た部分を省略記号で表示
-   使い方: class="nowrap" を要素に追加するだけ
-   例: <p class="section-body nowrap">...</p>
-   ※ ブロック要素 (p, h2, div など) に有効。width の制約がある要素で機能します。 */
+/* -------------------------------------------------------
+   .nowrap — テキストを1行に収めるユーティリティクラス
+   -------------------------------------------------------
+   【デスクトップ (641px 以上)】
+     1行に固定し、はみ出た分は「…」で省略します。
+
+   【スマートフォン (640px 以下)】
+     white-space: nowrap を無効にして自然な折り返しを許可。
+     文字が画面外に切れることはありません。
+
+   使い方:
+     <p class="nowrap">1行に収めたいテキスト</p>
+     <p class="section-body nowrap">...</p>
+
+   任意の位置で改行したい場合は <br> タグを使います:
+     <p>1行目のテキスト<br>2行目のテキスト</p>
+
+   ※ 本文・見出しなど長さが変わるテキストには <br> を推奨。
+     .nowrap はラベル・住所・短いキャプションなど
+     「常に1行で収まる」ことが確かな箇所に限定してください。
+   ------------------------------------------------------- */
+
+/* モバイル共通: 折り返し許可・はみ出し防止 */
 .nowrap {
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* デスクトップのみ: 1行固定 + 省略記号 */
+@media (min-width: 641px) {
+  .nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
 }
 
 /* ===========================
@@ -74,7 +105,7 @@ nav {
   justify-content: space-between;
 }
 
-.nav-logo img { height: 36px; display: block; }
+.nav-logo img { height: 60px; display: block; }
 
 .nav-links {
   display: flex;
@@ -220,6 +251,11 @@ nav {
   max-width: 640px;
 }
 
+/* 日本語は文字密度が高いため、1行あたりの文字数を確保 */
+:lang(ja) .section-body {
+  max-width: 780px;
+}
+
 .breadcrumb {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.5);
@@ -292,7 +328,7 @@ footer {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 860px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -318,7 +354,7 @@ footer {
 }
 
 :lang(ja) .hero h1 {
-  font-size: clamp(32px, 4.5vw, 56px);
+  font-size: clamp(16px, 5vw, 56px); /* スマホで1行に収まるよう最小値を縮小 */
   line-height: 1.25;
   letter-spacing: -0.5px;
 }
