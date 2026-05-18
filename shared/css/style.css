@@ -152,6 +152,19 @@ nav {
   border-color: var(--teal);
 }
 
+.nav-cta {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: var(--radius-md);
+  background: var(--teal);
+  color: var(--white);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--teal-light); }
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -551,9 +564,9 @@ section { padding: 96px 32px; }
 }
 
 .team-social-link:hover {
-  border-color: #00CCBB;
-  color: #009e91;
-  background: #f0fbfa;
+  border-color: #F08300;
+  color: #c06600;
+  background: #fff5eb;
 }
 
 #news { background: var(--white); }

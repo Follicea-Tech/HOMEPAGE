@@ -36,6 +36,7 @@
   }
   .nav-links.open { display: flex; }
   .hamburger { display: flex; }
+  .nav-cta    { display: none; }  /* モバイルではハンバーガーメニューに集約 */
 
   /* Landing page */
   .hero { padding: 90px 20px 80px; }
