@@ -13,13 +13,6 @@
 const FOLLTECH_NEWS = {
   ja: [
     {
-      file:    "260501.html",
-      tag:     "お知らせ",
-      date:    "2026年5月",
-      title:   "株式会社Follicea Technologies、大阪にて創業",
-      excerpt: "不妊治療の変革を目指す新たなバイオテックベンチャー、Follicea Technologies の設立をご報告いたします。"
-    },
-    {
       file:    "260301.html",
       tag:     "資金調達、受賞",
       date:    "2026年3月",
@@ -35,13 +28,6 @@ const FOLLTECH_NEWS = {
     }
   ],
   en: [
-    {
-      file:    "260501.html",
-      tag:     "Announcement",
-      date:    "May 2026",
-      title:   "Follicea Technologies Founded in Osaka",
-      excerpt: "We are pleased to announce the founding of Follicea Technologies, Inc. — a Kansai-based biotech startup specializing in innovative pharmacological treatments for infertility."
-    },
     {
       file:    "260301.html",
       tag:     "Funding",
