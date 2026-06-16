@@ -2,7 +2,7 @@
    GOOGLE ANALYTICS 4
    =========================== */
 (function () {
-  const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+  const GA_MEASUREMENT_ID = 'G-H8LJN382SG';
   const isConfigured =
     /^G-[A-Z0-9]+$/i.test(GA_MEASUREMENT_ID) &&
     GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX';
