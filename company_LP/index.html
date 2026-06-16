@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Follicea Technologies Company LP</title>
+  <script src="../shared/js/analytics.js"></script>
+  <style>
+    :root {
+      --navy: #0f2236;
+      --teal: #2a7f74;
+      --slate: #5d5b54;
+      --hairline: #e5e2dd;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      color: var(--navy);
+      background: #f8f7f4;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+
+    main {
+      width: min(100%, 560px);
+      padding: 40px;
+      border: 1px solid var(--hairline);
+      background: var(--white);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 0 0 28px;
+      color: var(--slate);
+      font-size: 15px;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 20px;
+      color: var(--white);
+      background: var(--teal);
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Opening Company LP</h1>
+    <p>If the PDF does not open automatically, use the button below.</p>
+    <a id="pdfLink" href="260616_LP.pdf">Open PDF</a>
+  </main>
+
+  <noscript>
+    <p><a href="260616_LP.pdf">Open PDF</a></p>
+  </noscript>
+
+  <script>
+    (function () {
+      const pdfUrl = new URL('260616_LP.pdf', window.location.href).href;
+      const link = document.getElementById('pdfLink');
+      const openPdf = function () {
+        window.location.replace(pdfUrl);
+      };
+
+      link.href = pdfUrl;
+
+      window.setTimeout(function () {
+        const tracker = window.FOLLTECH_ANALYTICS;
+        const tracked = tracker && tracker.trackEvent('company_lp_pdf_open', {
+          file_extension: 'pdf',
+          file_name: '260616_LP.pdf',
+          link_url: pdfUrl,
+          page_location: window.location.href,
+        }, {
+          callback: openPdf,
+          timeout: 900,
+        });
+
+        if (!tracked) openPdf();
+      }, 700);
+    }());
+  </script>
+</body>
+</html>
