@@ -1127,6 +1127,40 @@ section { padding: 96px 32px; }
   padding: 64px 32px 80px;
 }
 
+.article-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 40px;
+}
+
+.article-logo img {
+  display: block;
+  width: 100%;
+  max-width: var(--article-logo-width, 360px);
+  max-height: 140px;
+  object-fit: contain;
+}
+
+.article-photo {
+  margin: 44px 0 0;
+}
+
+.article-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--hairline);
+}
+
+.article-photo figcaption {
+  font-size: 12px;
+  color: var(--steel);
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
 .lead {
   font-size: 18px;
   color: var(--charcoal);

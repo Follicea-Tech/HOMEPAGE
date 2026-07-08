@@ -13,11 +13,25 @@
 const FOLLTECH_NEWS = {
   ja: [
     {
+      file:    "260619.html",
+      tag:     "資金調達、受賞",
+      date:    "2026年6月",
+      title:   "関西みらいベンチャーアワード「みらいWay」で優良賞を受賞",
+      excerpt: "Follicea Technologiesは、第3回「関西みらいベンチャーアワード『みらいWay』」において、100社以上の応募企業の中からファイナリスト10社に選出され、優良賞を受賞しました。"
+    },
+    {
+      file:    "260501.html",
+      tag:     "Announcement",
+      date:    "2026年7月",
+      title:   "Follicea Technologies、大阪にて創業",
+      excerpt: "株式会社Follicea Technologiesの創業をご報告いたします。当社は、不妊に対する革新的な薬物療法の開発に特化した、関西を拠点とするバイオテックスタートアップです。"
+    },
+    {
       file:    "260301.html",
       tag:     "資金調達、受賞",
       date:    "2026年3月",
       title:   "関西起業支援プログラム 起動4期に採択されました",
-      excerpt: "Follicea Technologiesは、iCeMSが推進する iCeMS Venture Studio の取り組みの一環として立ち上げが進められており、先進的研究成果の社会実装を目指したスタートアップ創出の好例として期待されています。"
+      excerpt: "Follicea Technologiesは、先進的研究成果の社会実装を目指したスタートアップ創出の好例として期待されています。"
     },
     {
       file:    "250820.html",
@@ -28,6 +42,20 @@ const FOLLTECH_NEWS = {
     }
   ],
   en: [
+    {
+      file:    "260619.html",
+      tag:     "Award",
+      date:    "June 2026",
+      title:   "Follicea Technologies Receives Merit Award at Kansai Mirai Venture Award \"Mirai Way\"",
+      excerpt: "Follicea Technologies was selected as one of 10 finalists from more than 100 applicants in the 3rd Kansai Mirai Venture Award \"Mirai Way\" and received a Merit Award."
+    },
+    {
+      file:    "260501.html",
+      tag:     "Announcement",
+      date:    "May 2026",
+      title:   "Follicea Technologies Founded in Osaka",
+      excerpt: "We are pleased to announce the founding of Follicea Technologies, Inc., a Kansai-based biotech startup developing innovative pharmacological treatments for infertility."
+    },
     {
       file:    "260301.html",
       tag:     "Funding",
